@@ -38,6 +38,13 @@
 -- A *specification* is itself an encoding of the problem at hand is in nature *continuous*
 -- We deal here only with examples, that is a *discrete* sampling of problem/solutions space
 
+# We are not alone
+
+> "Pour établir une pratique, les règles ne suffisent pas; on a également besoin d'exemples"
+
+L.Wittgenstein, *De la certitude*, 1969
+
+
 #  The Goals 
 
 - Specification of stories beyond the post-it
