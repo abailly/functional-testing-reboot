@@ -18,6 +18,8 @@
 
 - Also in original XP core practices
 - Acceptance is an heavily overloaded term
+-- ou encore "recette" qui évoque le contrat, or "collaboration over contract" !
+-- discussion sur la confiance nécessaire
 - Business facing tests that support the team
 - "Specification beyond the post-its"
 
