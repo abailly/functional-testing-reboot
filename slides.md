@@ -37,8 +37,8 @@
 - ATDD Done Right ! :-)
 - Advocated By Gojko Adzic and others from the Agile Testing community
 - Also be called *Executable Specification*, but this is questionable
--- A *specification* is itself an encoding of the problem at hand is in nature *continuous*
--- We deal here only with examples, that is a *discrete* sampling of problem/solutions space
+ - A *specification* is itself an encoding of the problem at hand is in nature *continuous*
+ - We deal here only with examples, that is a *discrete* sampling of problem/solutions space
 
 # We are not alone
 
