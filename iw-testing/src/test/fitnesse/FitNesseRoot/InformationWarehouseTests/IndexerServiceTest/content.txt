@@ -1,0 +1,17 @@
+!|import|
+|com.polyspot.iw.indexer|
+
+!1 Introduction
+
+Indexer Service is provided by IW to allow clients to query and retrieve changed documents information, metadata and attached elements.
+
+!1 Retrieving changes
+
+!| Given Documents Database Contains At Time|1                      |
+|Url                                        |When Changed|Size|Type |
+|doc1                                       |0           |10  |type1|
+|doc2                                       |0           |20  |type2|
+
+!| When Getting Changed Documents               |
+|Since|Maximum Size|Type|number retrieved ?|
+|0    |0           |null|2                 |

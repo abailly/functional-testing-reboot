@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.neuri.tdd</groupId>
+  <artifactId>trinidad</artifactId>
+  <packaging>pom</packaging>
+  <name>trinidad main project</name>
+  <version>20110908</version>
+  <properties>
+    <fitnesse.version>20110104</fitnesse.version>
+    <junit.version>4.6</junit.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.fitnesse</groupId>
+      <artifactId>fitnesse</artifactId>
+      <version>${fitnesse.version}</version>
+    </dependency>
+  </dependencies>
+  <modules>
+    <module>maven-trinidad-plugin</module>
+    <module>maven-trinidad-plugin-test</module>
+  </modules> 
+  <inceptionYear>2009</inceptionYear>
+  <url>http://neuri.com/projects/</url>
+  <developers><developer><name>Gojko Adzic</name></developer></developers>
+  <description>
+    Trinidad is a set of extensions and additional runners for the FitNesse acceptance test management tool.   
+  </description>
+  <organization><name>Neuri Limited</name><url>http://www.neuri.co.uk</url></organization>
+  <licenses>
+    <license>
+      <name>GNU General Public License</name>
+      <url>http://www.gnu.org/licenses/gpl.html</url>
+    </license>
+  </licenses>
+  <distributionManagement>
+    <repository>
+      <id>neuri-maven</id>
+      <url>sftp://neuri.com/home/webadmin/maven.neuri.com/html</url>
+    </repository>
+  </distributionManagement>
+  <build>
+    <plugins>
+      <plugin>
+	<artifactId>maven-install-plugin</artifactId>
+	<inherited>false</inherited>
+	<executions>
+	  <execution>
+	    <id>install-local-fitnesse</id>
+	    <phase>validate</phase>
+	    <goals>
+	      <goal>install-file</goal>
+	    </goals>
+	    <configuration>
+	      <file>${basedir}/lib/fitnesse.jar</file>
+	      <artifactId>fitnesse</artifactId>
+	      <groupId>org.fitnesse</groupId>
+	      <version>20110104</version>
+	      <packaging>jar</packaging>
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+    	<groupId>org.apache.maven.plugins</groupId>
+    	<artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+	  <descriptors>
+	    <descriptor>src/assembly/src.xml</descriptor>
+	  </descriptors>
+        </configuration>	    
+	<executions>
+          <execution>
+            <id>make-assembly</id> <!-- this is used for inheritance merges -->
+            <phase>package</phase> <!-- append to the packaging phase. -->
+            <goals>
+              <goal>single</goal> <!-- goals == mojos -->
+            </goals>
+          </execution>
+        </executions>          
+      </plugin>      
+    </plugins>
+  </build>
+
+</project>

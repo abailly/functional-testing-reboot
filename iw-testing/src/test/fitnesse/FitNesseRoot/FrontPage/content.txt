@@ -1,0 +1,7 @@
+!1 Polyspot Information Warehouse & Information Enrichment Service 
+
+These specifications define the behavior of Polyspot Information Warehouse, one of the components of Polyspot Enterprise Search.
+
+!2 Test Suites
+
+.InformationWarehouseTests

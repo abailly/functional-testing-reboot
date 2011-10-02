@@ -1,0 +1,2 @@
+!define TEST_SYSTEM {slim}
+!path  ${java.class.path}

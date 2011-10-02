@@ -1,0 +1,322 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.polyspot</groupId>
+  <artifactId>polyspot-root-pom</artifactId>
+  <packaging>pom</packaging>
+  <version>3</version>
+  <name>Polyspot Enterprise POM</name>
+
+  <description>Enterprise-wide POM for common configuration of all Maven based projects</description>
+
+  <url>http://polyspot.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <nexus.server>https://dev.polyspot.com/nexus</nexus.server>
+    <maven.compiler.encoding>${project.build.sourceEncoding}</maven.compiler.encoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+    <!-- Plugins versions goes here -->    
+    <plugin.maven.war>2.1.1</plugin.maven.war>
+    <plugin.maven.jar>2.3.2</plugin.maven.jar>
+    <plugin.maven.compiler>2.3.2</plugin.maven.compiler>
+    <plugin.maven.dependency>2.2</plugin.maven.dependency>
+    <plugin.maven.clean>2.4.1</plugin.maven.clean>
+    <plugin.maven.eclipse>2.8</plugin.maven.eclipse>
+    <plugin.maven.helper>1.5</plugin.maven.helper>
+    <plugin.maven.ant>1.6</plugin.maven.ant>
+    <plugin.maven.surefire>2.8.1</plugin.maven.surefire>
+    <plugin.maven.versions>1.2</plugin.maven.versions>
+    <plugin.maven.buildnumber>1.0</plugin.maven.buildnumber>
+    <plugin.maven.buildhelper>1.7</plugin.maven.buildhelper>
+    <plugin.maven.install>2.3.1</plugin.maven.install>
+    <plugin.maven.deploy>2.5</plugin.maven.deploy>
+    <plugin.maven.assembly>2.2-beta-5</plugin.maven.assembly>
+    <plugin.maven.resources>2.4.3</plugin.maven.resources>
+    <plugin.maven.enforcer>1.0.1</plugin.maven.enforcer>
+    <!-- common and duplicated thirdparty versions goes here -->
+    <fitnesse.version>20110104</fitnesse.version>
+    <!-- Custom built version from https://github.com/cucumber/cucumber-jvm -->
+    <cucumber.jvm.version>1.0.0-20110916</cucumber.jvm.version>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${plugin.maven.install}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>${plugin.maven.assembly}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${plugin.maven.deploy}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${plugin.maven.resources}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${plugin.maven.surefire}</version>
+          <configuration>
+            <printSummary>true</printSummary>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${plugin.maven.clean}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>${plugin.maven.ant}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>${plugin.maven.war}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>${plugin.maven.dependency}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${plugin.maven.compiler}</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <showWarnings>true</showWarnings>
+            <showDeprecation>true</showDeprecation>
+            <!-- FIXME Can we have both debug and optimized code at the same time? -->
+            <debug>true</debug>
+            <optimize>true</optimize>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${plugin.maven.jar}</version>
+          <configuration>
+            <archive>
+              <manifestEntries>
+                <Implementation-Title>${project.name}</Implementation-Title>
+                <Implementation-Version>${project.version}</Implementation-Version>
+                <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                <Implementation-Build>${buildNumber}</Implementation-Build>
+                <Built-By>${user.name}</Built-By>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-eclipse-plugin</artifactId>
+          <version>${plugin.maven.eclipse}</version>
+          <configuration>
+            <!-- Eclipse coding conventions are deployed alongside this pom -->
+            <workspaceCodeStylesURL>${nexus.server}/content/groups/public/com/polyspot/polyspot-eclipse/${project.version}/${project.artifactId}-${project.version}-eclipse.xml</workspaceCodeStylesURL>
+            <workspaceActiveCodeStyleProfile>Lucene</workspaceActiveCodeStyleProfile>
+            <downloadJavadocs>true</downloadJavadocs>
+            <downloadSources>true</downloadSources>
+            <buildcommands>
+              <buildcommand>org.maven.ide.eclipse.maven2Builder</buildcommand>
+              <buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
+            </buildcommands>
+            <projectnatures>
+              <projectnature>org.maven.ide.eclipse.maven2Nature</projectnature>
+              <projectnature>org.eclipse.jdt.core.javanature</projectnature>
+            </projectnatures>
+            <classpathContainers>
+              <classpathContainer>org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER</classpathContainer>
+              <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+            </classpathContainers>
+          </configuration>
+        </plugin>
+        <!-- Support for automatic management of inter-project dependencies by Bamboo -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${plugin.maven.versions}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${plugin.maven.enforcer}</version>
+        <executions>
+          <execution>
+            <id>enforce-rules</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <DependencyConvergence/>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>${plugin.maven.buildnumber}</version>
+        <executions>
+          <execution>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>${plugin.maven.buildhelper}</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${basedir}/eclipse-configuration.xml</file>
+                  <type>xml</type>
+                  <classifier>eclipse</classifier>
+                </artifact>
+                <artifact>
+                  <file>${basedir}/intellij-configuration.xml</file>
+                  <type>xml</type>
+                  <classifier>intellij</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- cucumber tests need this -->
+      <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-picocontainer</artifactId>
+        <version>${cucumber.jvm.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>${cucumber.jvm.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.fitnesse</groupId>
+        <artifactId>fitnesse</artifactId>
+        <version>${fitnesse.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>1.8.5</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.6.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.6.2</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.8.2</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>repository-polyspot</id>
+      <name>polyspot releases repository</name>
+      <url>${nexus.server}/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>repository-polyspot</id>
+      <name>polyspot snapshots repository</name>
+      <url>${nexus.server}/content/repositories/snapshots</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://dev.polyspot.com/jira/</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>BAMBOO</system>
+    <url>https://dev.polyspot.com/bamboo/</url>
+  </ciManagement>
+
+  <organization>
+    <name>PolySpot S.A.S</name>
+    <url>http://www.polyspot.com/</url>
+  </organization>
+
+  <scm>
+    <developerConnection>scm:git:</developerConnection>
+  </scm>
+
+  <!--
+      FIXME Putting repositories inside POMs is usually considered bad practice
+      These should really go into settings.xml file
+  -->
+  <repositories>
+    <repository>
+      <id>repository-polyspot</id>
+      <url>${nexus.server}/content/groups/public</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repository-polyspot</id>
+      <url>${nexus.server}/content/groups/public</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>

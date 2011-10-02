@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.polyspot</groupId>
+    <artifactId>polyspot-root-pom</artifactId>
+    <version>3</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>com.polyspot.iw</groupId>
+  <artifactId>iw-project</artifactId>
+  <packaging>pom</packaging>
+  <version>5.4.0-SNAPSHOT</version>
+  <name>Polyspot InfoWarehouse Project</name>
+  <url>http://polyspot.com</url>
+
+  <properties>
+    <dependency.slf4j>1.6.2</dependency.slf4j>
+    <!-- 1.9-ea04: OK now,  must switch to 1.9 when this version release -->
+    <dependency.jackson>1.9-ea06</dependency.jackson>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>com.polyspot.iw</groupId>
+        <artifactId>iw-database</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.polyspot.iw</groupId>
+        <artifactId>iw-business</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.polyspot.iw</groupId>
+        <artifactId>iw-connector</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.polyspot.iw</groupId>
+        <artifactId>iw-schema</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.polyspot.iw</groupId>
+        <artifactId>iw-indexer</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.codehaus.jackson</groupId>
+        <artifactId>jackson-xc</artifactId>
+        <version>1.8.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.jackson</groupId>
+        <artifactId>jackson-mapper-asl</artifactId>
+        <version>1.8.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.jackson</groupId>
+        <artifactId>jackson-core-asl</artifactId>
+        <version>1.8.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.jersey</groupId>
+        <artifactId>jersey-bundle</artifactId>
+        <version>1.8-ea01</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.jersey</groupId>
+        <artifactId>jersey-server</artifactId>
+        <version>${dependency.jackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.jersey</groupId>
+        <artifactId>jersey-client</artifactId>
+        <version>${dependency.jackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.jersey</groupId>
+        <artifactId>jersey-json</artifactId>
+        <version>${dependency.jackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.jersey.test.framework</groupId>
+        <artifactId>jersey-test-framework</artifactId>
+        <version>1.1.1-ea</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ektorp</groupId>
+        <artifactId>org.ektorp</artifactId>
+        <version>1.2.1</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+    <modules>
+    <module>../iw-business</module>
+    <module>../iw-connector</module>
+    <module>../iw-database</module>
+    <module>../iw-schema</module>
+    <module>../iw-indexer</module>
+    <module>../iw-webapp</module>
+    <module>../iw-testing</module>
+  </modules>
+
+</project>

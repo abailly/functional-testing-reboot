@@ -1,0 +1,182 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.polyspot.iw</groupId>
+  <artifactId>iw-testing</artifactId>
+  <version>5.4.0-SNAPSHOT</version>
+  <name>Polyspot InfoWarehouse :: Functional Testing</name>  
+  <packaging>jar</packaging>
+
+  <properties>
+    <!-- common and duplicated thirdparty versions goes here -->
+    <fitnesse.version>20110104</fitnesse.version>
+    <!-- Custom built version from https://github.com/cucumber/cucumber-jvm -->
+    <cucumber.jvm.version>1.0.0-20110916</cucumber.jvm.version>
+    <trinidad.version>20110908</trinidad.version>
+    <antrun.plugin.version>1.6</antrun.plugin.version>
+    <trinidad.breakBuildOnFailure>true</trinidad.breakBuildOnFailure>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.polyspot.iw</groupId>
+      <artifactId>iw-business</artifactId>
+      <version>5.4.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.polyspot.iw</groupId>
+      <artifactId>iw-indexer</artifactId>
+      <version>5.4.0-SNAPSHOT</version>
+    </dependency>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+      </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.7</version>
+    </dependency>
+
+    <!-- cucumber tests need this -->
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-jvm</artifactId>
+      <version>${cucumber.jvm.version}</version>
+      <type>pom</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.jvm.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-core</artifactId>
+      <version>${cucumber.jvm.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-picocontainer</artifactId>
+      <version>${cucumber.jvm.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>${cucumber.jvm.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Fitnesse tests need this -->
+    <dependency>
+      <groupId>org.fitnesse</groupId>
+      <artifactId>fitnesse</artifactId>
+      <version>${fitnesse.version}</version>
+    </dependency>
+
+    
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.8.5</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <testResources>
+      <testResource>
+        <directory>src/test/features</directory>
+      </testResource>
+    </testResources>
+    
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-trinidad-plugin</artifactId>
+        <version>${trinidad.version}</version>
+        <configuration>
+          <testRepositoryUri>${project.basedir}/src/test/fitnesse</testRepositoryUri>
+          <breakBuildOnFailure>${trinidad.breakBuildOnFailure}</breakBuildOnFailure>
+          <suites>
+            <suite>InformationWarehouseTests</suite>
+          </suites>
+        </configuration>
+        <executions>
+          <execution>
+            <id>run-tests</id>
+            <phase>test</phase>
+            <goals>
+              <goal>run-tests</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>embedded</id>
+      <url>file://${basedir}/lib</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>embedded</id>
+      <url>file://${basedir}/lib</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <profiles>
+    
+    <profile>
+      <id>start-fitnesse</id>
+      
+      <properties>
+        <trinidad.breakBuildOnFailure>false</trinidad.breakBuildOnFailure>
+      </properties>
+      
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>${antrun.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>start-fitnesse</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>test</phase>
+                <configuration>
+                  <target>
+                    <property refid="maven.test.classpath" name="test_classpath"/>
+                    <java classpath="${test_classpath}" failonerror="true"
+                          classname="fitnesseMain.FitNesseMain" fork="true">
+                      <arg value="-o"/>
+                      <arg value="-d"/>
+                      <arg file="src/test/fitnesse"/>
+                      <arg line="-p 9090"/>
+                    </java>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
+</project>
