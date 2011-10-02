@@ -40,9 +40,13 @@
  - A *specification* is itself an encoding of the problem at hand is in nature *continuous*
  - We deal here only with examples, that is a *discrete* sampling of problem/solutions space
 
-# The Vision
+# The Vision - Before Spec. By Example
 
-![](figures/gojko-spec-poster.jpg)
+![](figures/sbe-before.jpg)
+
+# The Vision - After Spec. By Example
+
+![from http://gojko.net/2011/09/30/help-me-ab-test-amazon-and-win-a-poster/](figures/sbe-after.jpg)
 
 # We are not alone
 
