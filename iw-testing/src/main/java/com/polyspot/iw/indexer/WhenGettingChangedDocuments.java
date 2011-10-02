@@ -1,3 +1,6 @@
+/**
+ * Copyright © 2011 PolySpot 
+ */
 package com.polyspot.iw.indexer;
 
 import com.polyspot.iw.business.database.IDatabaseDriver;

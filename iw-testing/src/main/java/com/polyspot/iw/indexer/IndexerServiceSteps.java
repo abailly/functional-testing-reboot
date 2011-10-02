@@ -1,3 +1,6 @@
+/**
+ * Copyright © 2011 PolySpot 
+ */
 package com.polyspot.iw.indexer;
 
 import static org.mockito.Mockito.mock;
