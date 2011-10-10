@@ -1,6 +1,12 @@
 % Spécifications Exécutables
-% Arnaud Bailly 
+% Arnaud Bailly - Jonathan Perret
 % 13/09/2011
+
+# Plan
+
+* 15': Principes des "tests d'acceptation" Agile
+* 30': Exercice de _Spécification par l'Exemple_
+* 15': Conclusion & Perspectives
 
 # Introduction
 
@@ -74,10 +80,10 @@ L.Wittgenstein, *De la certitude*, 1969
   
 # Faire évoluer les Tests
 
-- Un cycle de travial possible :
+- Un cycle de travail possible :
   1. Définir les tests de recette pour une "story" donnée avant le
      début du codage, les écrire comme ils viennent sous forme
-     exécutable
+     exécutable ;
   2. Une fois la "story" finie, transformer les tests en
      *exemples de spécification* : les regrouper avec l'ensemble
      des tests pour la fonctionnalité que cette "story" ajoute
@@ -88,7 +94,20 @@ L.Wittgenstein, *De la certitude*, 1969
      trouver des cas extrêmes, des chemins non couverts, des
      contradictions…
 
+# Communiquer
+
+> C'est donc que “suivre la règle” est une pratique. Croire que l'on suit la règle n'est pas la suivre. 
+> C'est donc aussi qu'on ne peut pas suivre la règle privatim ; sinon croire que l'on suit la règle serait la même chose que la suivre. 
+
+L.Wittgenstein, *Recherches Philosophiques*, §202, 1953
+
 # Exécution
 
 # Conclusion
+
+# Références
+
+* Gojko Adzic, _Specification By Example_, Manning 2011
+* Gojko Adzic, _Bridging the Communication Gap_, Neuri 2009
+* L.Crispin & J.Gregory, _Agile Testing_, Addison-Wesley, 2009
 
