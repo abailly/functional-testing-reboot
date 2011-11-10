@@ -1,3 +1,7 @@
+% La spécification par l'exemple
+% Jonathan Perret - Arnaud Bailly
+% 10/11/2011
+
 # La Spécification par l'exemple
 
 > "Pour établir une pratique, les règles ne suffisent pas; on a également besoin d'exemples"
